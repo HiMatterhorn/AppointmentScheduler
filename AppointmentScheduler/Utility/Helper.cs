@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
-namespace AppointmentScheduler.Helper
+namespace AppointmentScheduler.Utility
 {
     public static class Helper
     {
@@ -9,6 +9,7 @@ namespace AppointmentScheduler.Helper
         public static string Patient = "Patient";
         public static string Doctor = "Doctor";
 
+        //TODO Try to rework it to Enum
         public static List<SelectListItem> GetRolesForDropDown()
         {
             return new List<SelectListItem> {
