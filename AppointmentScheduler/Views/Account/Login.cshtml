@@ -8,7 +8,7 @@
             <form id="account" method="post" asp-action="Login" asp-controller="Account">
                 <h4>Use your registered email id and password to login.</h4>
                 <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
+@*                <div asp-validation-summary="All" class="text-danger"></div>*@
 
                 <!--Email-->
                 <div class="form-group row">
@@ -56,3 +56,7 @@
         </section>
     </div>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
