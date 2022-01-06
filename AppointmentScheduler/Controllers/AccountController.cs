@@ -68,7 +68,7 @@ namespace AppointmentScheduler.Controllers
                     Email = model.Email,
                     Name = model.Name,
                 };
-                var result = await _userManager.CreateAsync(user);
+                var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
