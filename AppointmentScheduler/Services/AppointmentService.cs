@@ -41,7 +41,7 @@ namespace AppointmentScheduler.Services
                             join userRoles in _db.UserRoles on user.Id equals userRoles.UserId
                             join roles in _db.Roles.Where(x => x.Name == Helper.Patient) on userRoles.RoleId equals roles.Id
                             //projection
-                            select new DoctorVM
+                            select new PatientVM
                             {
                                 Id = user.Id,
                                 Name = user.Name
