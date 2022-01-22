@@ -13,20 +13,6 @@
     </div>
 </div>
 
-<script>
+<script src="~/js/script-custom-calendar.js"></script>
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-
-            headerToolbar: {
-                left: 'prev,next,today',
-                center: 'title',
-                right: 'timeGridWeek,dayGridMonth,timeGridDay'
-            },
-        });
-        calendar.render();
-    });
-
-</script>
+<partial name="_AddEditAppointment" />
