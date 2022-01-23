@@ -4,21 +4,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AppointmentScheduler</title>
+
+
+    <!----External JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+
+    <!-- Default JS -->
+    @*    <script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+
+    <!-- Default CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
-
-    <!----External -->
-    <link rel=”stylesheet” href=https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css />
-    <link rel=”stylesheet” href=//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css” />
-    <link rel=”stylesheet” href=https://kendo.cdn.telerik.com/2020.2.513/styles/kendo.default-v2.min.css />
-    <link href=”~/lib/select2/css/select2.css” rel=”stylesheet” />
-    <!----End -->
-    <!-- Full calendar-->
-    @*  <link rel=”stylesheet” href=//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css” />
-        <link rel=”stylesheet” href=//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css” media=”print” />*@
-    <link href='~/css/fullCalendar.css' rel='stylesheet' />
-    <!----End -->
+    <!----External CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css">
 </head>
 <body>
     <header>
@@ -46,24 +52,9 @@
             &copy; 2022 - AppointmentScheduler - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <!----External -->
-    <script type=”text/javascript” src=”~/lib//select2/js/select2.full.min.js”></script>
-    <script type=”text/javascript” src=”//cdn.jsdelivr.net/momentjs/latest/moment.min.js”></script>
-    <script type=”text/javascript” src=”//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js”></script>
-    <script src=https://kendo.cdn.telerik.com/2020.2.513/js/kendo.all.min.js></script>
-    <script type=”text/javascript” src=”~/js/notify.min.js”></script>
-    <!----End -->
-    <!-- Full calendar-->
-    @*  <script type=”text/javascript” src=”//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js”></script>
-        <script src="~/js/script-custom-calendar.js"></script>
-    *@
-    <script src="~/js/fullCalendar.js"></script>
 
-    <!----End -->
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
