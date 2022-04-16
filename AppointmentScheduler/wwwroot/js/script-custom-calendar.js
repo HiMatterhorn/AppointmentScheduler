@@ -3,18 +3,20 @@
 $(document).ready(function () {
     $("#appointmentDate").kendoDateTimePicker({
         value: new Date(),
-        dateInput: true
+        dateInput: false,
+        format: "yyyy/MM/dd hh:mm"
     });
     InitializeCalendar();
 });
 
+var calendar;
 
 
 function InitializeCalendar() {
     try {
         var calendarEl = document.getElementById('calendar');
         if (calendarEl != null) {
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
 
                 headerToolbar: {
@@ -28,14 +30,15 @@ function InitializeCalendar() {
                     onShowModal(event, null);
                 },
                 eventDisplay: 'block',
-                events: function (fetchinfo, successCallback, failureCallback) {
+                events: function (fetchInfo, successCallback, failureCallback) {
                     $.ajax({
                         url: routeURL + '/api/Appointment/GetCalendarData?doctorId=' + $("#doctorId").val(),
                         type: 'GET',
                         dataType: 'JSON',
                         success: function (response) {
                             var events = [];
-                            if (response.status == 1) {
+                            if (response.status === 1) {
+
                                 $.each(response.dataenum, function (i, data) {
                                     events.push({
                                         title: data.title,
@@ -46,7 +49,8 @@ function InitializeCalendar() {
                                         borderColor: "#162466",
                                         textColor: "white",
                                         id: data.id
-                                    })
+                                    });
+                                    
                                 })
                             }
                             successCallback(events);
@@ -64,14 +68,14 @@ function InitializeCalendar() {
     catch (e) {
         alert(e);
     }
-};
+}
 
 function onShowModal(obj, isEventDetail) {
-    $('#appointmentInput').modal("show")
-};
+    $("#appointmentInput").modal("show");
+}
 
 function onCloseModal() {
-    $('#appointmentInput').modal("hide")
+    $("#appointmentInput").modal("hide");
 }
 
 function onSubmitForm() {
@@ -86,7 +90,7 @@ function onSubmitForm() {
             Duration: $("#duration").val(),
             DoctorId: $("#doctorId").val(),
             PatientId: $("#patientId").val(),
-        }
+        };
 
         $.ajax({
             url: routeURL + '/api/Appointment/SaveCalendarData',
@@ -94,7 +98,7 @@ function onSubmitForm() {
             data: JSON.stringify(requestData),
             contentType: 'application/json',
             success: function (response) {
-                if (response.status == 1 || response.status == 2) {
+                if (response.status === 1 || response.status === 2) {
                     $.notify(response.message, "success");
                     onCloseModal();
                 }

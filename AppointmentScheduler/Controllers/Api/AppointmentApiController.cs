@@ -56,7 +56,7 @@ namespace AppointmentScheduler.Controllers.Api
         [Route("GetCalendarData")]
         public IActionResult GetCalendarData(string doctorId)
         {
-            CommonResponse<List<AppointmentVM>> commonResponse = new CommonResponse<List<AppointmentVM>> ();
+            CommonResponse<List<AppointmentVM>> commonResponse = new CommonResponse<List<AppointmentVM>>();
             try
             {
                 if (role == Helper.Patient)
@@ -73,7 +73,7 @@ namespace AppointmentScheduler.Controllers.Api
 
                 else
                 {
-                    commonResponse.dataenum = _appointmentService.PatientsEventsById(doctorId);
+                    commonResponse.dataenum = _appointmentService.DoctorsEventsById(doctorId);
                     commonResponse.status = Helper.success_code;
                 }
             }
