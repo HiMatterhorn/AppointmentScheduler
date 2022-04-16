@@ -50,7 +50,7 @@ function InitializeCalendar() {
                                         textColor: "white",
                                         id: data.id
                                     });
-                                    
+
                                 })
                             }
                             successCallback(events);
@@ -59,6 +59,9 @@ function InitializeCalendar() {
                             $.notify("Error", "error");
                         }
                     });
+                },
+                eventClick: function (info) {
+                    getEventDetailsByEventId(info.event)
                 }
             });
             calendar.render();
@@ -71,7 +74,19 @@ function InitializeCalendar() {
 }
 
 function onShowModal(obj, isEventDetail) {
+    if (isEventDetail != null) {
+        $("#title").val(obj.title);
+        $("#description").val(obj.description);
+        $("#appointmentDate").val(obj.startDate);
+        $("#duration").val(obj.duration);
+        $("#doctorId").val(obj.doctorId);
+        $("#patientId").val(obj.patientId);
+        $("#id").val(obj.id);
+
+    }
+
     $("#appointmentInput").modal("show");
+
 }
 
 function onCloseModal() {
@@ -120,7 +135,7 @@ function checkValidation() {
     //TODO That is not marking the empty input field in formular with red border
     if ($("#title").val() == undefined || $("#title").val() == "") {
         isValid = false;
-       // $("#title").addClass('error');
+        // $("#title").addClass('error');
     }
 
     /*    else {
@@ -132,10 +147,27 @@ function checkValidation() {
         //$("#appointmentDate").addClass('error');
     }
 
-/*    else {
-        $("#appointmentDate").removeClass('error');
-    }*/
+    /*    else {
+            $("#appointmentDate").removeClass('error');
+        }*/
 
     return isValid;
 
+}
+
+function getEventDetailsByEventId(info) {
+    $.ajax({
+        url: routeURL + '/api/Appointment/GetCalendarDataById/' + info.id,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            if (response.status === 1 && response.dataenum != undefined) {
+                onShowModal(response.dataenum, true)
+            }
+            successCallback(events);
+        },
+        error: function (xhr) {
+            $.notify("Error", "error");
+        }
+    });
 }
